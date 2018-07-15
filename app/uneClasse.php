@@ -2,75 +2,56 @@
 
 namespace App;
 
-class leplusprochede {
+class uneClasse{
 
-    public $values;
+    public $content;
 
-    public function __construct(array $values)
-    {
-        $this->values           = $values;
+    // Son constructeur avec un contenu à passer en argument
+
+    public function __construct($content){
+
+        $this->content = $content;
+
     }
 
-    /**
-     * Vérifie qu'il n'y que des chiffres dans le tableau d'entrée
-     * Transforme les chiffres qui sont des chaînes de caractères, en int
-     * Supprime les string, tableaux, etc...
-     *
-     * @return array
-     */
-    public function check_value(): array {
-        var_dump($this);
+    // Méthode qui va faire une sorte de nettoyage du contenu
 
-        if ($this->count() !== 0) {
-            $tmp = [];
+    public function nettoie(){
 
-            foreach ($this->values as $key => $value) {
-                if(is_numeric($value)) {
-                    $tmp[] = (int)$value;
-                }
-            }
-            unset($this->values);
-            $this->values = array_merge($tmp);
+        $this->content = ucfirst(trim(strip_tags($this->content)));
 
-            return $this;
-        } else {
-            return [$this->count()];
-        }
+        return $this;
+
     }
 
-    /**
-     * Supprimer les doublons de chaques chiffres
-     * Réindexe les $key du tableau
-     *
-     * @return array
-     */
-    public function unique(): array {
-        $this->values = array_merge(array_unique($this->values));
+    // Méthode qui va découper le contenu (50 carac.) pour une présentation par exemple
+    public function coupe(){
 
-        return $this->values;
+        $this->content = substr($this->content, 0, 50).'...';
+
+        return $this;
+
     }
 
-    public function abs_value(array $values): array {
-        $abs = [];
-        foreach ($values as $value) {
-            $abs[] = abs($value);
-        }
+    // Méthode qui va faire une sorte de petite mise en page du contenu
+    public function prepare(){
 
-        return $abs;
+        // Bien sûr, il faut utiliser le css plutôt que faire ainsi, mais on est dans la démo là 🙂
+        $this->content = '<p style="border: 1px #000 solid; padding: 5px;">'.$this->content.'</p>';
+
+        return $this;
+
     }
 
-    /**
-     * Compter le nombre de valeurs
-     * Vérifier que le nombre de valeurs est compris entre 0 et 10000
-     *
-     * @return int
-     */
-    private function count(): int {
-        $count = count($this->values);
+    // Méthode qui va renvoyer le contenu sous sa forme actuelle (avec un titre h1 ou non)
+    public function affiche($titre = ''){
 
-        if ($count === 0 || $count >= 10000)
-            $count = 0;
+        // si titre ou non
+        if(isset($titre) AND $titre != '')
+            return '<h1>'.$titre.'</h1>'.$this->content;
+        else
+            return $this->content;
 
-        return $count;
     }
+
 }
