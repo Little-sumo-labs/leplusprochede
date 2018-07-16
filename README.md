@@ -6,8 +6,8 @@ L'exercice de base demandait de trouver la valeur la plus proche de 0 dans une l
 
 
 ## Intitulé de base de l'exercice
-* Afficher 0 si aucune température n’est fournie
-* Sinon on affiche la température la plus proche de 0. Si 2 entiers sont aussi proches de 0, on prend l’entier positif. Donc si on a le choix entre -5 et 5, on prend 5.
+* Afficher 0 si aucune donnée n’est fournie à la base
+* Sinon on affiche la valeur la plus proche de 0. Si 2 entiers sont aussi proches de 0, on prend l’entier positif. Donc si on a le choix entre -5 et 5, on prend 5.
 * Le nombre de températures est compris entre 0 (inclus) et 10000 (non inclus).
 * Les valeurs sont fournies, séparées par un caractère spécifique.
 
@@ -17,11 +17,14 @@ L'essemble du script est, en lui-même, fonctionnel.
 J'ai intégré plusieurs concepts avancé & connu de PHP dans cette exercice :
 * Une classe PHP, avec le principe d'orienté objet
 * Composer, et son principe d'autoloading.
-* Le design pattern Fluent, pour chaîner les différentes fonctions
+* Le design pattern Fluent
 
-Ces différents concepts ne sont pas obligatoire pour cette exercice, mais cela permettra une meilleure maintenabilité pour de futur développement.
+Ces différents concepts ne sont pas obligatoire pour cette exercice.
 
-Un code en orienté objet, permettra 
+Ils permettent juste une meilleure maintenabilité pour de futur développement.
+* Les méthodes de la classe PHP, ne font qu'une seule chose bien défini
+* Composer permet d'intégrer plus facilement les classes PHP.
+* Le Pattern Fluent permet de chaîner les différentes fonctions, pour une meilleure visibilité de l'algorithme
 
 ## Intégration à mettre en place
 * Intégration de PHPDocumentator, pour la génération automatique de documentation
