@@ -1,12 +1,29 @@
 <?php
-
 namespace App;
 
+/**
+ * Permet de déterminer, dans un tableau, la valeur la plus proche de 0
+ *
+ * Class lePlusProcheDe
+ * @author Guillaume RICHARD <g.jf.richard@gmail.com>
+ * @package App
+ */
 class lePlusProcheDe {
-
+    /**
+     * @var array $values
+     */
     public $values = [];
+    /**
+     * @var int $max_number_value
+     */
     public $max_number_value;
 
+    /**
+     * lePlusProcheDe constructor.
+     *
+     * @param array $values
+     * @param int $max_number_value
+     */
     public function __construct(array $values, int $max_number_value = 10000)
     {
         $this->values           = $values;
@@ -14,9 +31,9 @@ class lePlusProcheDe {
     }
 
     /**
-     * Vérifie qu'il n'y que des chiffres dans le tableau d'entrée
-     * Transforme les chiffres qui sont des chaînes de caractères, en int
-     * Supprime les string, tableaux, etc...
+     * Vérifie les informations du tableau d'entrée
+     * Les chiffres qui sont des chaînes de caractères, sont transformé en int
+     * les string, tableaux, booléens (etc...), sont supprimé
      *
      * @return lePlusProcheDe
      */
