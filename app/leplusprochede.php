@@ -36,22 +36,29 @@ class lePlusProcheDe {
      * les string, tableaux, booléens (etc...), sont supprimé
      *
      * @return lePlusProcheDe
+     * @throws \Exception
      */
     public function check_value(): lePlusProcheDe {
+        $tmp = [];
 
-        if ($this->count() !== 0) {
-            $tmp = [];
+        $this->is_array_empty($this->values);
+        $this->is_array_max($this->values);
 
-            foreach ($this->values as $key => $value) {
+        foreach ($this->values as $key => $value) {
+            try{
                 if(is_numeric($value)) {
                     $tmp[] = (int)$value;
+                } else {
+                    $keyTab = $key+1;
+                    throw new \Exception("La valeur n°$keyTab du tableau n'est pas un nombre");
                 }
+            } catch(Exception $e){
+                print_r($e);
             }
-            unset($this->values);
-            $this->values = array_merge($tmp);
-        } else {
-            $this->values = [0];
         }
+        unset($this->values);
+        $this->values = array_merge($tmp);
+
         return $this;
     }
 
@@ -125,17 +132,31 @@ class lePlusProcheDe {
     }
 
     /**
-     * Compter le nombre de valeurs
-     * Vérifier que le nombre de valeurs est compris entre 0 et $max_number_value
+     * Vérifie si le tableau proposé en paramètres dans la classe est vide (ou non)
      *
-     * @return int
+     * @throws \Exception
      */
-    private function count(): int {
-        $count = count($this->values);
+    private function is_array_empty() {
+        try{
+            if(empty($this->values) ){
+                throw new \Exception("Le tableau est vide");
+            }
+        } catch(Exception $e){
+            print_r($e);
+        }
+    }
 
-        if ($count === 0 || $count >= $this->max_number_value)
-            $count = 0;
-
-        return $count;
+    /**
+     * Vérifi si le tableau est plus grand qu'un certain nombre de caractères
+     * @throws \Exception
+     */
+    private function is_array_max() {
+        try{
+            if( count($this->values) > $this->max_number_value ){
+                throw new \Exception("Le tableau est trop grand");
+            }
+        } catch(Exception $e){
+            print_r($e);
+        }
     }
 }
